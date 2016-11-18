@@ -1,10 +1,19 @@
 #include <stdio.h> /* needed for sockaddr_in */
 #include <string.h> /* needed for sockaddr_in */
+#ifdef _WIN32
+#include <io.h>
+#else
 #include <unistd.h>
+#endif
 #include <sys/types.h>
+#ifdef _WIN32
+#include <winsock2.h>
+#include <ws2tcpip.h>
+#else
 #include <sys/socket.h>
 #include <netinet/in.h> /* needed for sockaddr_in */
 #include <netdb.h>
+#endif
 #include <pthread.h>
 #include <time.h>
 

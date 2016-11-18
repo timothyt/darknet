@@ -6,7 +6,11 @@
 #include "assert.h"
 #include "classifier.h"
 #include "cuda.h"
+#ifdef _WIN32
+#include <time.h>
+#else
 #include <sys/time.h>
+#endif
 
 #ifdef OPENCV
 #include "opencv2/highgui/highgui_c.h"

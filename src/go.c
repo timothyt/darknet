@@ -10,8 +10,15 @@
 
 int inverted = 1;
 int noi = 1;
+#ifdef _WIN32
+#define nind 5
+#else
 static const int nind = 5;
-
+#endif
+#ifdef _WIN32
+#define popen _popen
+#define pclose _pclose
+#endif
 typedef struct {
     char **data;
     int n;

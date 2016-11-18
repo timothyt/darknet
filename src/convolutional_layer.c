@@ -7,6 +7,7 @@
 #include "gemm.h"
 #include <stdio.h>
 #include <time.h>
+#include <crtdbg.h>
 
 #ifdef AI2
 #include "xnor_layer.h"
@@ -14,7 +15,10 @@
 
 #ifndef AI2
 #define AI2 0
+#ifdef _WIN32
+#else
 void forward_xnor_layer(layer l, network_state state);
+#endif
 #endif
 
 void swap_binary(convolutional_layer *l)
@@ -469,10 +473,13 @@ void forward_convolutional_layer(convolutional_layer l, network_state state)
     int k = l.size*l.size*l.c;
     int n = out_h*out_w;
 
+#if AI2
     if (l.xnor && l.c%32 == 0 && AI2) {
         forward_xnor_layer(l, state);
         printf("xnor\n");
-    } else {
+    } else
+#endif 
+	{
 
         float *a = l.weights;
         float *b = state.workspace;
