@@ -1,3 +1,5 @@
+Darknet with support for Windows buildable under Visual Studio 2015 Community Edition
+
 ![Darknet Logo](http://pjreddie.com/media/files/darknet-black-small.png)
 
 #Darknet#
